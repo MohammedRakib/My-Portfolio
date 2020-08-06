@@ -1,0 +1,13 @@
+{% extends 'portfolio/base.html' %}
+
+{%  block content %}
+
+<h1>{{ blog.title }}</h1>
+
+<h2>--{{ blog.date|date:'jS F Y' }}--</h2>
+
+<p>{{ blog.description|safe }}</p>
+{# the safe template tag is used so that if we add html tags in the description #}
+{# from django admin then the tags wil be implemented #}
+
+{% endblock %}

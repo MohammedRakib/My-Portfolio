@@ -1,0 +1,24 @@
+{% extends 'portfolio/base.html' %}
+
+{%  block content %}
+
+<h1>My Blogs</h1>
+
+<h2>I have written {{ blog_counter }} blog{{ blog.count| pluralize }}</h2>
+{#The code '{{ blogs.count|pluralize }}' is a feature of Django where it counts blog objects#}
+{#and if it sees 1 object it will say 'blog' and if it see more than 1 object then it will make#}
+{#'blog' to 'blogs' in 'I have written n blog/blogs.'#}
+{% for i in blog %}
+
+    <a href="{% url 'blog:detail' i.id %}"><strong>{{ i.title }}</strong></a>
+    <br><strong>{{ i.date|date:'d/m/Y' }}</strong>
+    {#    Here, search in google for date built-in templates django and you will gt a lot of options#}
+    {#    for date format like 'D m Y'|lower/upper etc.#}
+    <p>{{ i.description|striptags|truncatechars:100 }}</p>
+    {# various built in template filters are there#}
+    {# truncatechars shortens the display of characters #}
+    {# striptags strips any html tags that might come in description #}
+
+{% endfor %}
+
+{% endblock %}
