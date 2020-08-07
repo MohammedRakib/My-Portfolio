@@ -1,0 +1,26 @@
+.navbar-nav .nav-link {
+    color: rgba(0,0,0,1) !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(0,0,0,.5) !important;
+}
+
+body {
+    font-family: 'Exo', sans-serif;
+}
+
+#blogtitle {
+    font-size: 6rem;
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+@media (min-width: 992px) {
+    #hometext {
+        font-size: 4rem;
+        font-family: 'Fira Sans Condensed', sans-serif;
+    }
+    #blogdetailtitle {
+        font-size: 5rem;
+    }
+}

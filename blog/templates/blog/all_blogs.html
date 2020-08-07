@@ -1,24 +1,33 @@
-{% extends 'portfolio/base.html' %}
+{% extends "portfolio/base.html" %}
 
-{%  block content %}
+{% load static %}
 
-<h1>My Blogs</h1>
+{% block content %}
 
-<h2>I have written {{ blog_counter }} blog{{ blog.count| pluralize }}</h2>
-{#The code '{{ blogs.count|pluralize }}' is a feature of Django where it counts blog objects#}
-{#and if it sees 1 object it will say 'blog' and if it see more than 1 object then it will make#}
-{#'blog' to 'blogs' in 'I have written n blog/blogs.'#}
-{% for i in blog %}
+<h1 id="blogtitle" class="font-weight-bold text-center">Blog</h1>
 
-    <a href="{% url 'blog:detail' i.id %}"><strong>{{ i.title }}</strong></a>
-    <br><strong>{{ i.date|date:'d/m/Y' }}</strong>
-    {#    Here, search in google for date built-in templates django and you will gt a lot of options#}
-    {#    for date format like 'D m Y'|lower/upper etc.#}
-    <p>{{ i.description|striptags|truncatechars:100 }}</p>
-    {# various built in template filters are there#}
-    {# truncatechars shortens the display of characters #}
-    {# striptags strips any html tags that might come in description #}
+<h3 class="text-center mb-5">Rakib has written {{ blog_counter }} blog{{ blogs.count|pluralize }}</h3>
+    {#The code '{{ blogs.count|pluralize }}' is a feature of Django where it counts blog objects#}
+    {#and if it sees 1 object it will say 'blog' and if it see more than 1 object then it will make#}
+    {#'blog' to 'blogs' in 'I have written n blog/blogs.'#}
 
+{% for blog in blogs %}
+<div class="row justify-content-center my-3">
+  <div class="col-md-10">
+    <a href="{% url 'blog:detail' blog.id %}">
+      <h2>{{ blog.title }}</h2>
+    </a>
+    <h5 class="text-muted">{{ blog.date|date:'d/m/Y' }}</h5>
+      {#    Here, search in google for date built-in templates django and you will gt a lot of options#}
+      {#    for date format like 'D m Y'|lower/upper etc.#}
+
+    <h4>{{ blog.description|striptags|truncatechars:100 }}</h4>
+      {# various built in template filters are there#}
+      {# truncatechars shortens the display of characters #}
+      {# striptags strips any html tags that might come in description #}
+
+  </div>
+</div>
 {% endfor %}
 
 {% endblock %}
